@@ -2,6 +2,7 @@ require 'sinatra/base'
 require './lib/peep.rb'
 require 'date'
 
+
 class Chitter < Sinatra::Base
 
   attr_reader :peep, :searched, :keyword
@@ -28,7 +29,6 @@ class Chitter < Sinatra::Base
   post '/search' do
     @searched = Peep.search(keyword: params[:keyword])
     @keyword = params[:keyword].downcase
-    connection = PG.connect(dbname: 'chitter_test')
     erb :'search_page'
   end
 
